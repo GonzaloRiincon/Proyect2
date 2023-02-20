@@ -1,4 +1,6 @@
 const axios = require('axios')
+const { CURSOR_FLAGS } = require('mongodb')
+const { cursorTo } = require('readline')
 const Driver = require('../models/Driver.model')
 class ApiService {
     constructor() {
@@ -7,29 +9,34 @@ class ApiService {
         })
     }
     getAllDrivers() {
-        console.log("jejejejejeje")
         return this.api.get('/drivers.json')
     }
     getAllDriversByYear(year) {
         return this.api.get(`/${year}/drivers.json`)
     }
     getOneDriver(driver) {
-        const driverData = this.api.get(`/drivers/${driver}.json`)
-        const driverConstructor = this.api.get(`/drivers/${driver}/constructors.json`)
-        const driverPoints = this.api.get(`/drivers/${driver}/driverStandings.json`)
-        Driver
-            .create({
-                name: driverData.MRData.DriverTable.Drivers.givenName,
-                surname: driverData.MRData.DriverTable.Drivers.familyName,
-                birthday: driverData.MRData.DriverTable.Drivers.dateOfBirth,
-                nationality: driverData.MRData.DriverTable.Drivers.nationality,
-                constructors: driverConstructor.MRData.ConstructorTable.constructors[0].name,
-                points: driverPoints.MRData.StandingsTable.StandingsLists.map(element => element.DriverStandings.points),
+        const promises = [this.api.get(`/drivers/${driver}.json`), this.api.get(`/drivers/${driver}/constructors.json`), this.api.get(`/drivers/${driver}/driverStandings.json`)]
+        return Promise
+            .all(promises)
+            .then(([driverData, driverConstructor, driverPoints]) => {
+                const { givenName, familyName, dateOfBirth, nationality, } = driverData.data.MRData.DriverTable.Drivers[0]
+
+                return Driver
+                    .create({
+                        name: givenName,
+                        surname: familyName,
+                        birthday: dateOfBirth,
+                        nationality: nationality,
+                        constructors: driverConstructor.data.MRData.ConstructorTable.Constructors[0].name,
+                        points: driverPoints.data.MRData.StandingsTable.StandingsLists
+                            .map(element => element.DriverStandings.map(elm => Number(elm.points)))
+                            .flat(2).reduce((acc, curr) => acc + curr),
+                    })
+                    .then(createdDriver => {
+
+                        return createdDriver
+                    })
             })
-            .then(createdDriver => {
-                return Driver.findById(createdDriver._id)
-            })
-            .catch(err, next(err))
     }
 
 }

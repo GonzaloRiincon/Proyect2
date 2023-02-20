@@ -5,22 +5,19 @@ const driverSchema = new Schema(
         name: {
             type: String,
             trim: true,
-            required: true,
         },
         surname: {
             type: String,
             trim: true,
-            required: true,
         },
         birthday: {
             type: String,
         },
         nationality: {
             type: String,
-            required: true
         },
         constructors: {
-            type: [String],
+            type: String,
             required: true,
         },
         points: {
