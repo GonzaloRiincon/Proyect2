@@ -9,7 +9,7 @@ const { checkFields } = require('../middlewares/auth-guard')
 
 
 router.get("/signup", (req, res, next) => {
-    res.render("auth/register")
+    res.render("auth/register", { layout: false })
 })
 
 router.post('/signup', fileUploader.single('avatar'), checkFields, (req, res, next) => {
@@ -27,9 +27,8 @@ router.post('/signup', fileUploader.single('avatar'), checkFields, (req, res, ne
 })
 
 router.get('/login', (req, res, next) => {
-    res.render('auth/login')
+    res.render('auth/login', { layout: false })
 })
-
 
 
 router.post('/login', (req, res, next) => {
