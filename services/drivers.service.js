@@ -18,12 +18,12 @@ class ApiService {
         const driverPoints = this.api.get(`/drivers/${driver}/driverStandings.json`)
         Driver
             .create({
-                name: MRData.DriverTable.Drivers.givenName,
-                surname: MRData.DriverTable.Drivers.familyName,
-                birthday: MRData.DriverTable.Drivers.dateOfBirth,
-                nationality: MRData.DriverTable.Drivers.nationality,
-                constructors: MRData.ConstructorTable.constructors[0].name,
-                points: MRData.StandingsTable.StandingsLists.map(element => element.DriverStandings.points),
+                name: driverData.MRData.DriverTable.Drivers.givenName,
+                surname: driverData.MRData.DriverTable.Drivers.familyName,
+                birthday: driverData.MRData.DriverTable.Drivers.dateOfBirth,
+                nationality: driverData.MRData.DriverTable.Drivers.nationality,
+                constructors: driverConstructor.MRData.ConstructorTable.constructors[0].name,
+                points: driverPoints.MRData.StandingsTable.StandingsLists.map(element => element.DriverStandings.points),
             })
             .then(createdDriver => {
                 return Driver.findById(createdDriver._id)
