@@ -7,6 +7,7 @@ const { checkIfAdmin } = require('../utils/checkIfAdmin');
 const { checkIfOwn } = require('../utils/checkIfOwn');
 const { isLoggedIn, checkRole, ADMINorOwn } = require('../middlewares/route-guard');
 
+
 router.get('/list', isLoggedIn, (req, res, next) => {
 
     User
@@ -64,5 +65,7 @@ router.post('/:role/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
         .then(() => res.redirect('/user/list'))
         .catch(err => next(err))
 })
+
+
 
 module.exports = router;
