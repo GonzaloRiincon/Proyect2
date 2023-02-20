@@ -33,7 +33,7 @@ router.get('/:driverName', (req, res, next) => {
     const { driverName } = req.params
     driverService
         .getOneDriver(driverName)
-        .then(driver => res.json(driver))
+        .then(driver => res.render('drivers/details', { driver }))
         .catch(err => next(err))
 })
 
