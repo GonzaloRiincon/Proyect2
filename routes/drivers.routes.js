@@ -5,6 +5,22 @@ const axios = require('axios')
 const ApiService = require('../services/drivers.service')
 const driverService = new ApiService()
 
+
+//ruta que muestre todos los drivers //pantalla con los botones a todos los años, que muestre pilotos por año
+
+router.get('/list', (req, res, next) => {
+
+    driverService
+        .getAllDrivers()
+        .then(response => {
+            console.log(response.data)
+            res.render('drivers/list', { driver: response.data })
+        })
+        .catch(err => next(err))
+})
+
+
+
 router.get('/:driverName', (req, res, next) => {
     const { driverName } = req.params
     driverService
