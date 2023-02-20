@@ -13,8 +13,6 @@ router.get('/:driverName', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.get()
-
 
 
 
