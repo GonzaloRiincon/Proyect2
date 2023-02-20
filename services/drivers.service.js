@@ -1,6 +1,5 @@
 const axios = require('axios')
-const { CURSOR_FLAGS } = require('mongodb')
-const { cursorTo } = require('readline')
+const capitalize = require('../utils/capitalize')
 const Driver = require('../models/Driver.model')
 class ApiService {
     constructor() {
@@ -15,12 +14,13 @@ class ApiService {
         return this.api.get(`/${year}/drivers.json`)
     }
     getOneDriver(driver) {
-        const promises = [this.api.get(`/drivers/${driver}.json`), this.api.get(`/drivers/${driver}/constructors.json`), this.api.get(`/drivers/${driver}/driverStandings.json`), Driver.find({ surname: driver })]
+        console.log(capitalize('hola'))
+        const promises = [this.api.get(`/drivers/${driver}.json`), this.api.get(`/drivers/${driver}/constructors.json`), this.api.get(`/drivers/${driver}/driverStandings.json`), Driver.find({ surname: capitalize(driver) })]
         return Promise
             .all(promises)
             .then(([driverData, driverConstructor, driverPoints, existing]) => {
                 const { givenName, familyName, dateOfBirth, nationality, } = driverData.data.MRData.DriverTable.Drivers[0]
-                if (!existing) {
+                if (existing.length === 0) {
                     return Driver
                         .create({
                             name: givenName,
@@ -38,9 +38,9 @@ class ApiService {
                         })
                         .catch(err => console.log(err))
                 }
-                if (existing) {
-                    Driver
-                        .find({ surname: driver })
+                if (existing.length === 1) {
+                    return Driver
+                        .find({ surname: capitalize(driver) })
                         .then(driverProf => {
                             return driverProf
                         })
