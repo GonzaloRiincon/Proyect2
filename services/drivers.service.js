@@ -8,10 +8,24 @@ class ApiService {
         })
     }
     getAllDrivers() {
-        return this.api.get('/drivers.json').data.MRData.DriverTable.Drivers
+        const promises = [this.api.get('/drivers.json')]
+        return Promise
+            .all(promises)
+            .then(([drivers]) => {
+                return drivers.data.MRData.DriverTable.Drivers
+            })
+            .catch(err => console.log(err))
+
     }
     getAllDriversByYear(year) {
-        return this.api.get(`/${year}/drivers.json`).data.MRData.DriverTable.Drivers
+
+        const promises = [this.api.get(`/${year}/drivers.json`)]
+        return Promise
+            .all(promises)
+            .then(([drivers]) => {
+                return drivers.data.MRData.DriverTable.Drivers
+            })
+            .catch(err => console.log(err))
     }
     getOneDriver(driver) {
         console.log(capitalize('hola'))
