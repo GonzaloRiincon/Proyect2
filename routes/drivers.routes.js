@@ -5,10 +5,11 @@ const axios = require('axios')
 const ApiService = require('../services/drivers.service')
 const driverService = new ApiService()
 
-router.get('/driver/alonso', (req, res, next) => {
+router.get('/:driverName', (req, res, next) => {
+    const { driverName } = req.params
     driverService
-        .getOneDriver('alonso')
-        .then(alonso => res.json(alonso))
+        .getOneDriver(driverName)
+        .then(driver => res.json(driver))
         .catch(err => next(err))
 })
 
