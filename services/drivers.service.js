@@ -8,10 +8,10 @@ class ApiService {
         })
     }
     getAllDrivers() {
-        return this.api.get('/drivers.json').MRData.DriverTable.Drivers
+        return this.api.get('/drivers.json').data.MRData.DriverTable.Drivers
     }
     getAllDriversByYear(year) {
-        return this.api.get(`/${year}/drivers.json`).MRData.DriverTable.Drivers
+        return this.api.get(`/${year}/drivers.json`).data.MRData.DriverTable.Drivers
     }
     getOneDriver(driver) {
         console.log(capitalize('hola'))

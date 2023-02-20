@@ -11,6 +11,7 @@ const driverService = new ApiService()
 router.get('/list', (req, res, next) => {
 
     driverService
+
         .getAllDrivers()
         .then(response => {
             console.log(response.data)
