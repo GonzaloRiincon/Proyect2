@@ -6,32 +6,37 @@ const eventSchema = new Schema(
             type: String,
             required: true,
         },
-        country: {
-            type: String,
-            required: true,
+
+        place: {
+            country: {
+                type: String,
+                required: true,
+            }, locality: {
+                type: String,
+                required: true,
+            },
+            location: {
+                type: {
+                    type: String,
+                },
+                coords: {
+                    type: [Numbers]
+                }
+            },
         },
-        locality: {
-            type: String,
-            required: true,
-        },
+
         date: {
             type: Date,
             required: true,
         },
+
         drivers: {
             type: [{
                 ref: 'Driver',
                 type: Schema.Types.ObjectId
             }]
         },
-        location: {
-            type: {
-                type: String,
-            },
-            coords: {
-                type: [Numbers]
-            }
-        },
+
         finalClasification: {
             type: [{
                 ref: 'Driver',

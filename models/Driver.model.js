@@ -13,7 +13,7 @@ const driverSchema = new Schema(
             required: true,
         },
         birthday: {
-            type: Date,
+            type: String,
         },
         nationality: {
             type: String,
