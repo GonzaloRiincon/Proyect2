@@ -47,7 +47,7 @@ router.post('/login', (req, res, next) => {
                 return
             } else {
                 req.session.currentUser = user
-                res.redirect('/')
+                res.redirect(`/user/profile/${user._id}`)
             }
         })
         .catch(error => next(error))
