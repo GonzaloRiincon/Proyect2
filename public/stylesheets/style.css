@@ -15,6 +15,19 @@ nav img {
     background-size: cover;
 }
 
+.fullscreen {
+    height: 100vh;
+}
+
+.index {
+    margin-left: 110px;
+    margin-top: 150px;
+}
+
+.circle-img {
+    border-radius: 50%;
+}
+
 #errorMessage {
     background-color: rgb(255, 202, 202);
     width: 400px;
