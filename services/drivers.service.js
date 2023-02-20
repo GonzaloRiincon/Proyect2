@@ -7,6 +7,7 @@ class ApiService {
         })
     }
     getAllDrivers() {
+        console.log("jejejejejeje")
         return this.api.get('/drivers.json')
     }
     getAllDriversByYear(year) {
