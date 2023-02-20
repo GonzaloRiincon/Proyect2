@@ -1,0 +1,56 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        <div class="col-4 card mt-5">
+            <div class="card-body">
+                <img class="text-center img-fluid mx-auto d-block mt-3" src="{{user.avatar}}"
+                    alt="{{user.username}}"></img>
+                <h5 class="text-center mb-3 mt-5"><b>Username:</b> {{user.username}}</h5>
+                <p class="text-center"><b>email: </b>{{user.email}}</p>
+                <p class="text-center"><b>Role:</b> {{user.role}}</p>
+
+                {{#if isOwn}}
+                <div class="col-12 d-grid text-center p-5">
+                    <a class="btn btn-dark " href="/user/profile/edit/{{user.id}}">Edit</a>
+                </div>
+                {{/if}}
+
+                {{#if prof}}
+                <div class="col-12 d-grid text-center p-5">
+                    <a class="btn btn-dark " href="/user/profile/edit/{{user._id}}">Edit</a>
+                </div>
+                {{/if}}
+
+                {{#if isAdmin}}
+                <div class="row justify-content-between mx-3 mb-4">
+                    <div class="col-md-2 d-grid">
+                        <a class="btn btn-light border-dark" href="/user/profile/edit/{{user.id}}"
+                            role="button">EDIT</a>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <form class="d-grid" action="/user/delete/{{user.id}}" method="POST">
+                            <input type="submit" value="DELETE" class="btn btn-light btn-sm border-dark">
+                        </form>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <form class="d-grid" action="/user/EDITOR/{{user.id}}" method="POST">
+                            <input type="submit" value="EDITOR" class="btn btn-success btn-sm">
+                        </form>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <form class="d-grid" action="/user/ADMIN/{{user.id}}" method="POST">
+                            <input type="submit" value="ADMIN" class="btn btn-success btn-sm">
+                        </form>
+                    </div>
+                    <div class="col-md-2 d-grid">
+                        <form class="d-grid" action="/user/USER/{{user.id}}" method="POST">
+                            <input type="submit" value="USER" class="btn btn-success btn-sm">
+                        </form>
+                    </div>
+                </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>

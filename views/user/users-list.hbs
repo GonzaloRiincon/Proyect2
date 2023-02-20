@@ -1,0 +1,23 @@
+<div class="container">
+
+    <div class="row justify-content-center">
+
+        {{#each user}}
+        <div class="col-lg-3 col-md-5 card mx-2 mb-3">
+            <div class="card-body">
+                <img class="image img-fluid mx-auto d-block my-4" src="{{avatar}}" alt="{{username}}"></img>
+                <h5 class="text-center mb-3"><b>Username:</b> {{username}}</h5>
+                <p class="text-center"><b>email:</b> {{email}}</p>
+                <p class="text-center"><b>role:</b> {{role}}</p>
+
+                <div class="row justify-content-center">
+                    <div class="col-md-12 d-grid">
+                        <a class="btn btn-dark" href="/user/profile/{{id}}" role="button">PROFILE</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
