@@ -1,4 +1,5 @@
 const axios = require('axios')
+const capitalize = require('../utils/capitalize')
 
 class ApiService {
     constructor() {
@@ -12,6 +13,10 @@ class ApiService {
     }
     getAllDriversByYear(year) {
         return this.api.get(`/${year}/drivers.json`)
+    }
+
+    getAllDriversByName(name) {
+        return this.api.get(`/drivers/${capitalize(name)}.json`)
     }
 
     getOneDriverData(driver) {

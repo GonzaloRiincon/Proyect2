@@ -35,8 +35,11 @@ const getAllDriversByName = (req, res, next) => {
     const { name } = req.query
 
     driverService
-        .getOneDriver(name)
-        .then(driver => res.render('drivers/details', { driver }))
+        .getAllDriversByName(name)
+        .then(driversData => {
+            const drivers = driversData.data.MRData.DriverTable.Drivers
+            res.render('drivers/list', { drivers })
+        })
         .catch(err => next(err))
 }
 
