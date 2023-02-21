@@ -64,8 +64,8 @@ router.post('/draft/:surname', (req, res, next) => {
     const { surname } = req.params
     const { _id } = req.session.currentUser
 
-    driverService
-        .getOneDriver(surname)
+    Driver
+        .find({ surname })
         .then(([driver]) => {
             const driverId = driver._id.toString()
             return User.findByIdAndUpdate(_id, { $addToSet: { 'draftInfo.draft': driverId } })
