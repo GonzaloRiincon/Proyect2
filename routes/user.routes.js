@@ -50,8 +50,9 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
 
     User
         .findById(id)
-        .populate('draftInfo')
+        .populate('draftInfo.draft')
         .then(user => {
+            console.log(user.draftInfo.draft[0])
             const isAdmin = checkIfAdmin(req.session.currentUser.role)
             const isOwn = checkIfOwn(req.session.currentUser, user)
             res.render('user/profile', { user, isAdmin, isOwn })

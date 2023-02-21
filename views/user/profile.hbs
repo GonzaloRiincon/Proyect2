@@ -16,7 +16,9 @@
                     {{#each user.draftInfo.draft}}
 
                     <div class="col-md-4">
-                        {{user.draftInfo.draft.name}}
+                        <h4>{{this.name}} {{this.surname}}</h5>
+
+                            <h5>{{this.points}}</h5>
                     </div>
                     {{/each}}
 
