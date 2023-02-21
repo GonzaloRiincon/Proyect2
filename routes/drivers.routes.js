@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Driver = require('../models/Driver.model')
+const User = require('../models/User.model')
 const axios = require('axios')
 const ApiService = require('../services/drivers.service')
 const driverService = new ApiService()
@@ -38,6 +39,8 @@ router.get('/list/name', (req, res, next) => {
 })
 
 
+
+
 router.get('/:driverName', (req, res, next) => {
     const { driverName } = req.params
 
@@ -53,8 +56,6 @@ router.get('/:driverName', (req, res, next) => {
         })
         .catch(err => next(err))
 })
-
-
 
 
 

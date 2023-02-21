@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User.model')
+const Driver = require('../models/Driver.model')
+const ApiService = require('../services/drivers.service')
+const driverService = new ApiService()
 const fileUploader = require('../middlewares/cloudinary.middleware');
 const { checkFields, checkFieldsEdit } = require('../middlewares/auth-guard');
 const { checkIfAdmin } = require('../utils/checkIfAdmin');
@@ -40,10 +43,27 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params
     User
         .findById(id)
+        .populate('draftInfo.draft')
         .then(user => {
             const isAdmin = checkIfAdmin(req.session.currentUser.role)
             const isOwn = checkIfOwn(req.session.currentUser, user)
+            res.send(user.draftInfo.draft._id)
             res.render('user/profile', { user, isAdmin, isOwn })
+        })
+        .catch(err => next(err))
+})
+router.post('/draft/:surname', (req, res, next) => {
+    const { surname } = req.params
+    const { _id } = req.session.currentUser
+    const promises = [driverService.getOneDriver(surname)]
+    Promise
+        .all(promises)
+        .then(([[driver]]) => {
+            const driverId = driver._id.toString()
+            User
+                .findByIdAndUpdate(_id, { $addToSet: { 'draftInfo.draft': driverId } })
+                .then(() => res.redirect(`/user/profile/${_id}`))
+                .catch(err => next(err))
         })
         .catch(err => next(err))
 })
