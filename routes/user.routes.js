@@ -15,7 +15,7 @@ router.get('/list', isLoggedIn, (req, res, next) => {
 
     User
         .find()
-        .select('avatar username email role')
+        .select('avatar username email')
         .sort({ username: 1 })
         .then(users => res.render('user/users-list', { users }))
         .catch(err => next(err))
