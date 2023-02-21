@@ -73,10 +73,11 @@ const getDriverDetails = (req, res, next) => {
 
                         return createdDriver
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => next(err))
             }
 
         })
+        .catch(err => next(err))
 
     Driver
         .find({ surname: capitalize(driverName) })
