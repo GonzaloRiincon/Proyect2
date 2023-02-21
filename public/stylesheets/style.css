@@ -28,6 +28,10 @@ nav img {
     border-radius: 50%;
 }
 
+.bg-color {
+    background-color: rgb(130, 171, 208);
+}
+
 #errorMessage {
     background-color: rgb(255, 202, 202);
     width: 400px;

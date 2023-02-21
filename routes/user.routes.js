@@ -50,7 +50,7 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
 
     User
         .findById(id)
-        .populate('draftInfo')
+        .populate('draftInfo.draft')
         .then(user => {
             const isAdmin = checkIfAdmin(req.session.currentUser.role)
             const isOwn = checkIfOwn(req.session.currentUser, user)
@@ -64,11 +64,18 @@ router.post('/draft/:surname', (req, res, next) => {
     const { surname } = req.params
     const { _id } = req.session.currentUser
 
-    Driver
-        .find({ surname })
-        .then(([driver]) => {
+    const promises = [Driver.find({ surname }), User.findById(_id)]
+    Promise
+        .all(promises)
+        .then(([[driver], user]) => {
+            console.log(driver)
             const driverId = driver._id.toString()
-            return User.findByIdAndUpdate(_id, { $addToSet: { 'draftInfo.draft': driverId } })
+
+            const newPoints = driver.points
+            return User.findByIdAndUpdate(_id, {
+                $addToSet: { 'draftInfo.draft': driverId },
+                $inc: { 'draftInfo.totalPoints': newPoints }
+            }, { new: true });
         })
         .then(() => res.redirect(`/user/profile/${_id}`))
         .catch(err => next(err))
