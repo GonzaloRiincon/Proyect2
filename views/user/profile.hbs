@@ -8,6 +8,26 @@
                     alt="{{user.username}}"></img>
                 <h5 class="text-center mb-3 mt-5"><b>Username:</b> {{user.username}}</h5>
                 <p class="text-center"><b>email: </b>{{user.email}}</p>
+
+                <div class="row justify-content-center">
+                    {{#if user.draft.[0]}}
+                    <p class="text-center"><b>My team</b></p>
+                    <div class="col-md-4">
+                        {{user.draft.[0]}}
+                    </div>
+                    {{/if}}
+                    {{#if user.draft.[1]}}
+                    <div class="col-md-4">
+                        {{user.draft.[1]}}
+                    </div>
+                    {{/if}}
+                    {{#if user.draft.[2]}}
+                    <div class="col-md-4">
+                        {{user.draft.[2]}}
+                    </div>
+                    {{/if}}
+                </div>
+
                 <p class="text-center"><b>Role:</b> {{user.role}}</p>
 
                 {{#if isOwn}}
