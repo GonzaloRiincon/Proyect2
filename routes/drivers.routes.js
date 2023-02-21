@@ -1,11 +1,13 @@
 const express = require('express')
 const router = express.Router()
-const Driver = require('../models/Driver.model')
-const User = require('../models/User.model')
-const axios = require('axios')
-const ApiService = require('../services/drivers.service')
-const { getAllDrivers, getAllDriversByYear, getAllDriversByName, getDriverDetails } = require('../controllers/driver.controller')
-const driverService = new ApiService()
+
+const {
+    getAllDrivers,
+    getAllDriversByYear,
+    getAllDriversByName,
+    getDriverDetails
+} = require('../controllers/driver.controller')
+
 
 router.get('/list', getAllDrivers)
 

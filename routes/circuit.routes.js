@@ -1,8 +1,11 @@
 const express = require('express')
-const { getAllCircuits, getAllCircuitsByYear, getAllCircuitsByName, getCircuitsDetails } = require('../controllers/circuit.controller')
 const router = express.Router()
-const ApiService = require('../services/circuits.service')
-const circuitService = new ApiService()
+const {
+    getAllCircuits,
+    getAllCircuitsByYear,
+    getAllCircuitsByName,
+    getCircuitsDetails
+} = require('../controllers/circuit.controller')
 
 router.get('/list', getAllCircuits)
 
