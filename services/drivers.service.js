@@ -28,7 +28,6 @@ class ApiService {
             .catch(err => console.log(err))
     }
     getOneDriver(driver) {
-        console.log(capitalize('hola'))
         const promises = [this.api.get(`/drivers/${driver}.json`), this.api.get(`/drivers/${driver}/constructors.json`), this.api.get(`/drivers/${driver}/driverStandings.json`), Driver.find({ surname: capitalize(driver) })]
         return Promise
             .all(promises)

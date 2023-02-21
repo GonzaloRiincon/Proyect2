@@ -14,7 +14,6 @@ router.get('/list', (req, res, next) => {
 
         .getAllDrivers()
         .then(response => {
-            console.log(response.data)
             res.render('drivers/list', { driver: response })
         })
         .catch(err => next(err))
@@ -32,16 +31,26 @@ router.get('/list/name', (req, res, next) => {
     const { name } = req.query
     driverService
         .getOneDriver(name)
-        .then(driver => res.render('drivers/details', { driver }))
+        .then(driver => {
+            res.render('drivers/details', { driver })
+        })
         .catch(err => next(err))
 })
 
 
 router.get('/:driverName', (req, res, next) => {
     const { driverName } = req.params
-    driverService
-        .getOneDriver(driverName)
-        .then(driver => res.render('drivers/details', { driver }))
+
+    const promises = [driverService.getOneDriver(driverName)]
+
+    Promise
+        .all(promises)
+        .then(([driverResult]) => {
+
+            const driverData = Array.isArray(driverResult) ? driverResult[0] : driverResult
+
+            res.render('drivers/details', { driver: driverData })
+        })
         .catch(err => next(err))
 })
 
