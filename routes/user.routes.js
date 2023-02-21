@@ -15,8 +15,8 @@ router.get('/list', isLoggedIn, (req, res, next) => {
 
     User
         .find()
-        // proyectar
-        // ordenar
+        .select('avatar username email role')
+        .sort({ username: 1 })
         .then(users => res.render('user/users-list', { users }))
         .catch(err => next(err))
 })
