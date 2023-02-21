@@ -29,7 +29,8 @@ app.use("/", authRoutes)
 const driversRoutes = require("./routes/drivers.routes")
 app.use("/drivers", driversRoutes)
 
-
+const circuitRoutes = require("./routes/circuit.routes")
+app.use("/circuit", circuitRoutes)
 
 require("./error-handling")(app)
 
