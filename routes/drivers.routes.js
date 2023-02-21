@@ -28,6 +28,14 @@ router.get('/list/year', (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.get('/list/name', (req, res, next) => {
+    const { name } = req.query
+    driverService
+        .getOneDriver(name)
+        .then(driver => res.render('drivers/details', { driver }))
+        .catch(err => next(err))
+})
+
 
 router.get('/:driverName', (req, res, next) => {
     const { driverName } = req.params

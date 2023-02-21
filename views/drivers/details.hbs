@@ -1,15 +1,18 @@
 <div class="container">
 
     <div class="row justify-content-center">
-
+        {{#if driver}}
         <div class="col-4 card mt-5">
             <div class="card-body">
                 <h3 class="text-center mb-3 mt-5"> {{driver.[0].name}} {{driver.[0].surname}}</h3>
                 <p class="text-center">Nationality: <b>{{driver.[0].nationality}}</b></p>
                 <p class="text-center">His current squad is <b>{{driver.[0].constructors}}</b></p>
                 <h5 class="text-center">Current Points: <b>{{driver.[0].points}}</b></h5>
-
             </div>
         </div>
+        {{/if}}
+        {{#unless driver}}
+        <h3>Driver not found</h3>
+        {{/unless}}
     </div>
 </div>
