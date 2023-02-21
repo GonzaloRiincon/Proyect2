@@ -13,10 +13,9 @@ router.get("/signup", (req, res, next) => {
 })
 
 router.post('/signup', fileUploader.single('avatar'), checkFields, (req, res, next) => {
-    let avatar
-    const { username, email, userPwd } = req.body
-    req.file ? avatar = req.file.path : avatar = undefined
 
+    let avatar = req.file?.path
+    const { username, email, userPwd } = req.body
 
     bcrypt
         .genSalt(saltRounds)

@@ -12,46 +12,40 @@ const driverService = new ApiService()
 router.get('/list', (req, res, next) => {
 
     driverService
-
         .getAllDrivers()
-        .then(response => {
-            res.render('drivers/list', { driver: response })
-        })
+        .then(drivers => res.render('drivers/list', { drivers }))
         .catch(err => next(err))
 })
 
 router.get('/list/year', (req, res, next) => {
+
     const { year } = req.query
+
     driverService
         .getAllDriversByYear(year)
-        .then(driverSeason => res.render('drivers/list', { driver: driverSeason }))
+        .then(drivers => res.render('drivers/list', { drivers }))
         .catch(err => next(err))
 })
 
 router.get('/list/name', (req, res, next) => {
+
     const { name } = req.query
+
     driverService
         .getOneDriver(name)
-        .then(driver => {
-            res.render('drivers/details', { driver })
-        })
+        .then(driver => res.render('drivers/details', { driver }))
         .catch(err => next(err))
 })
 
 
-
-
 router.get('/:driverName', (req, res, next) => {
+
     const { driverName } = req.params
 
-    const promises = [driverService.getOneDriver(driverName)]
-
-    Promise
-        .all(promises)
-        .then(([driverResult]) => {
-
+    driverService
+        .getOneDriver(driverName)
+        .then((driverResult) => {
             const driverData = Array.isArray(driverResult) ? driverResult[0] : driverResult
-
             res.render('drivers/details', { driver: driverData })
         })
         .catch(err => next(err))

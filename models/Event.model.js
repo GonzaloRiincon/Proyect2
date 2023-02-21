@@ -11,7 +11,8 @@ const eventSchema = new Schema(
             country: {
                 type: String,
                 required: true,
-            }, locality: {
+            },
+            locality: {
                 type: String,
                 required: true,
             },
@@ -20,7 +21,7 @@ const eventSchema = new Schema(
                     type: String,
                 },
                 coords: {
-                    type: [Numbers]
+                    type: [Number]
                 }
             },
         },

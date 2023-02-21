@@ -37,8 +37,8 @@ const checkFields = (req, res, next) => {
 }
 
 const checkFieldsEdit = (req, res, next) => {
-    let errorMessage = ""
 
+    let errorMessage = ""
 
     const { username, email, userPwd } = req.body
 

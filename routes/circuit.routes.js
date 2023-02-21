@@ -7,31 +7,35 @@ router.get('/list', (req, res, next) => {
 
     circuitService
         .getAllCircuits()
-        .then(response => {
-            res.render('circuit/list', { circuit: response })
-        })
+        .then(circuit => res.render('circuit/list', { circuit }))
         .catch(err => next(err))
 })
+
 
 router.get('/list/year', (req, res, next) => {
+
     const { year } = req.query
+
     circuitService
         .getAllCircuitsByYear(year)
-        .then(circuitSeason => res.render('circuit/list', { circuit: circuitSeason }))
+        .then(circuit => res.render('circuit/list', { circuit }))
         .catch(err => next(err))
 })
+
 
 router.get('/list/name', (req, res, next) => {
+
     const { name } = req.query
+
     circuitService
         .getOneCircuit(name)
-        .then(circuit => {
-            res.render('circuit/details', { circuit })
-        })
+        .then(circuit => res.render('circuit/details', { circuit }))
         .catch(err => next(err))
 })
 
+
 router.get('/:circuitID', (req, res, next) => {
+
     const { circuitID } = req.params
 
     const promises = [circuitService.getOneCircuit(circuitID)]

@@ -15,12 +15,17 @@ router.get('/list', isLoggedIn, (req, res, next) => {
 
     User
         .find()
-        .then(user => res.render('user/users-list', { user }))
+        // proyectar
+        // ordenar
+        .then(users => res.render('user/users-list', { users }))
         .catch(err => next(err))
 })
 
+
 router.get('/profile/edit/:id', isLoggedIn, ADMINorOwn, (req, res, next) => {
+
     const { id } = req.params
+
     User
         .findById(id)
         .then(user => res.render('user/edit-user', user))
@@ -28,10 +33,10 @@ router.get('/profile/edit/:id', isLoggedIn, ADMINorOwn, (req, res, next) => {
 })
 
 router.post('/profile/edit/:id', fileUploader.single('avatar'), checkFieldsEdit, isLoggedIn, ADMINorOwn, (req, res, next) => {
-    let avatar
+
+    let avatar = req.file?.path
     const { id } = req.params
     const { email, username } = req.body
-    req.file ? avatar = req.file.path : avatar = undefined
 
     User
         .findByIdAndUpdate(id, { email, username, avatar })
@@ -40,7 +45,9 @@ router.post('/profile/edit/:id', fileUploader.single('avatar'), checkFieldsEdit,
 })
 
 router.get('/profile/:id', isLoggedIn, (req, res, next) => {
+
     const { id } = req.params
+
     User
         .findById(id)
         .populate('draftInfo.draft')
@@ -52,23 +59,24 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
         })
         .catch(err => next(err))
 })
+
 router.post('/draft/:surname', (req, res, next) => {
+
     const { surname } = req.params
     const { _id } = req.session.currentUser
-    const promises = [driverService.getOneDriver(surname)]
-    Promise
-        .all(promises)
-        .then(([[driver]]) => {
+
+    driverService
+        .getOneDriver(surname)
+        .then(([driver]) => {
             const driverId = driver._id.toString()
-            User
-                .findByIdAndUpdate(_id, { $addToSet: { 'draftInfo.draft': driverId } })
-                .then(() => res.redirect(`/user/profile/${_id}`))
-                .catch(err => next(err))
+            return User.findByIdAndUpdate(_id, { $addToSet: { 'draftInfo.draft': driverId } })
         })
+        .then(() => res.redirect(`/user/profile/${_id}`))
         .catch(err => next(err))
 })
 
 router.post('/delete/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+
     const { id } = req.params
 
     User
@@ -78,6 +86,7 @@ router.post('/delete/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
 })
 
 router.post('/:role/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
+
     const { role, id } = req.params
 
     User
@@ -86,6 +95,4 @@ router.post('/:role/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
         .catch(err => next(err))
 })
 
-
-
-module.exports = router;
+module.exports = router

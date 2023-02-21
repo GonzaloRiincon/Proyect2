@@ -1,4 +1,5 @@
 const axios = require('axios')
+
 class ApiService {
     constructor() {
         this.api = axios.create({
@@ -26,6 +27,7 @@ class ApiService {
             })
             .catch(err => console.log(err))
     }
+
     getOneCircuit(id) {
         const promises = [this.api.get(`/circuits/${{ id }}.json`)]
         return Promise
@@ -35,11 +37,6 @@ class ApiService {
             })
             .catch(err => console.log(err))
     }
-
-
 }
 
-
 module.exports = ApiService
-
-
