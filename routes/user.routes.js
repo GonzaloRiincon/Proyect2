@@ -54,7 +54,6 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
         .then(user => {
             const isAdmin = checkIfAdmin(req.session.currentUser.role)
             const isOwn = checkIfOwn(req.session.currentUser, user)
-            res.send(user.draftInfo.draft._id)
             res.render('user/profile', { user, isAdmin, isOwn })
         })
         .catch(err => next(err))
