@@ -62,7 +62,6 @@ class ApiService {
 
             })
             .catch(err => console.log(err))
-
     }
 
 

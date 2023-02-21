@@ -22,9 +22,15 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    draft: {
-      ref: 'Draft',
-      type: Schema.Types.ObjectId
+    draftInfo: {
+      draft: [{
+        ref: 'Driver',
+        type: Schema.Types.ObjectId
+      }],
+      totalPoints: {
+        type: Number,
+        default: 0
+      },
     },
     role: {
       type: String,
