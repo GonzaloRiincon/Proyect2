@@ -8,12 +8,11 @@
                 <p class="text-center">Nationality: <b>{{driver.nationality}}</b></p>
                 <p class="text-center">His current squad is <b>{{driver.constructors}}</b></p>
                 <h5 class="text-center">Current Points: <b>{{driver.points}}</b></h5>
-            </div>
-            <div class="col-md-6 d-grid">
-                <form class="d-grid" action="/user/draft/{{driver.surname}}" method="POST">
+                <form class="d-grid mt-4 mb-3 " action="/user/draft/{{driver.surname}}" method="POST">
                     <input type="submit" value="Draft" class="btn btn-dark btn-sm">
                 </form>
             </div>
+
         </div>
         {{/if}}
         {{#unless driver}}

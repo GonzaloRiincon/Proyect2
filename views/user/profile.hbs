@@ -18,6 +18,11 @@
                     <div class="col-md-3 card  bg-color mb-3 mx-3">
                         <p class="text-center pt-3"><b>{{this.name}} {{this.surname}}</b></p>
                         <p class="text-center ">{{this.points}} </p>
+                        {{#if ../isOwn}}
+                        <form class="d-grid" action="/user/draft/delete/{{this._id}}" method="POST">
+                            <input type="submit" value="DELETE" class="btn btn-light btn-sm border-dark">
+                        </form>
+                        {{/if}}
                     </div>
                     {{/each}}
                     <h3 class="text-center">{{user.draftInfo.totalPoints}}</h3>

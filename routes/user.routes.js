@@ -44,28 +44,6 @@ router.post('/profile/edit/:id', fileUploader.single('avatar'), checkFieldsEdit,
         .catch(err => next(err))
 })
 
-// router.get('/profile/:id', isLoggedIn, (req, res, next) => {
-
-//     const { id } = req.params
-
-//     User
-//         .findById(id)
-//         .populate('draftInfo.draft')
-//         .then(user => {
-
-//             const actualizedPoints = user.draftInfo.draft.map(elm => elm.points).reduce((acc, curr) => acc + curr, 0)
-//             return User.findByIdAndUpdate(id, { $set: { 'draftInfo.totalPoints': actualizedPoints } }, { new: true })
-
-//         })
-//         .then(user => {
-//             console.log(user)
-//             const isAdmin = checkIfAdmin(req.session.currentUser.role)
-//             const isOwn = checkIfOwn(req.session.currentUser, user)
-//             res.render('user/profile', { user, isAdmin, isOwn })
-//         })
-//         .catch(err => next(err))
-// })
-
 router.get('/profile/:id', isLoggedIn, (req, res, next) => {
     const { id } = req.params;
 
@@ -86,7 +64,7 @@ router.get('/profile/:id', isLoggedIn, (req, res, next) => {
 });
 
 
-router.post('/draft/:surname', (req, res, next) => {
+router.post('/draft/:surname', isLoggedIn, (req, res, next) => {
 
     const { surname } = req.params
     const { _id } = req.session.currentUser
@@ -109,6 +87,18 @@ router.post('/draft/:surname', (req, res, next) => {
         })
         .then(() => res.redirect(`/user/profile/${_id}`))
         .catch(err => next(err))
+})
+
+router.post('/draft/delete/:driverId', isLoggedIn, ADMINorOwn, (req, res, next) => {
+
+    const { driverId } = req.params
+    const { _id } = req.session.currentUser
+
+    User
+        .findByIdAndUpdate(_id, { $pull: { 'draftInfo.draft': driverId } }, { new: true })
+        .then(() => res.redirect(`/user/profile/${_id}`))
+        .catch(err => next(err))
+
 })
 
 router.post('/delete/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
