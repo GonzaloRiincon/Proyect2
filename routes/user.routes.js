@@ -44,20 +44,47 @@ router.post('/profile/edit/:id', fileUploader.single('avatar'), checkFieldsEdit,
         .catch(err => next(err))
 })
 
+// router.get('/profile/:id', isLoggedIn, (req, res, next) => {
+
+//     const { id } = req.params
+
+//     User
+//         .findById(id)
+//         .populate('draftInfo.draft')
+//         .then(user => {
+
+//             const actualizedPoints = user.draftInfo.draft.map(elm => elm.points).reduce((acc, curr) => acc + curr, 0)
+//             return User.findByIdAndUpdate(id, { $set: { 'draftInfo.totalPoints': actualizedPoints } }, { new: true })
+
+//         })
+//         .then(user => {
+//             console.log(user)
+//             const isAdmin = checkIfAdmin(req.session.currentUser.role)
+//             const isOwn = checkIfOwn(req.session.currentUser, user)
+//             res.render('user/profile', { user, isAdmin, isOwn })
+//         })
+//         .catch(err => next(err))
+// })
+
 router.get('/profile/:id', isLoggedIn, (req, res, next) => {
+    const { id } = req.params;
 
-    const { id } = req.params
-
-    User
-        .findById(id)
+    User.findById(id)
         .populate('draftInfo.draft')
-        .then(user => {
-            const isAdmin = checkIfAdmin(req.session.currentUser.role)
-            const isOwn = checkIfOwn(req.session.currentUser, user)
-            res.render('user/profile', { user, isAdmin, isOwn })
+        .then((user) => {
+            const actualizedPoints = user.draftInfo.draft.reduce((totalPoints, draftItem) => totalPoints + draftItem.points, 0);
+
+            return User.findByIdAndUpdate(id, { $set: { 'draftInfo.totalPoints': actualizedPoints } }, { new: true })
+                .populate('draftInfo.draft');
         })
-        .catch(err => next(err))
-})
+        .then((user) => {
+            const isAdmin = checkIfAdmin(req.session.currentUser.role);
+            const isOwn = checkIfOwn(req.session.currentUser, user);
+            res.render('user/profile', { user, isAdmin, isOwn });
+        })
+        .catch((err) => next(err));
+});
+
 
 router.post('/draft/:surname', (req, res, next) => {
 
@@ -68,14 +95,17 @@ router.post('/draft/:surname', (req, res, next) => {
     Promise
         .all(promises)
         .then(([[driver], user]) => {
-            console.log(driver)
-            const driverId = driver._id.toString()
+            if (user.draftInfo.draft.length === 3) {
+                res.render(`user/profile`, user)
+            } else {
+                const driverId = driver._id.toString()
 
-            const newPoints = driver.points
-            return User.findByIdAndUpdate(_id, {
-                $addToSet: { 'draftInfo.draft': driverId },
-                $inc: { 'draftInfo.totalPoints': newPoints }
-            }, { new: true });
+                const newPoints = driver.points
+                return User.findByIdAndUpdate(_id, {
+                    $addToSet: { 'draftInfo.draft': driverId },
+                    $inc: { 'draftInfo.totalPoints': newPoints }
+                }, { new: true });
+            }
         })
         .then(() => res.redirect(`/user/profile/${_id}`))
         .catch(err => next(err))

@@ -19,8 +19,8 @@ class ApiService {
         return this.api.get(`/drivers/${capitalize(name)}.json`)
     }
 
-    getOneDriverData(driver) {
-        return this.api.get(`/drivers/${driver}.json`)
+    getOneDriverData(driverId) {
+        return this.api.get(`/drivers/${driverId}.json`)
     }
 
     getOneDriverConstructor(driver) {
