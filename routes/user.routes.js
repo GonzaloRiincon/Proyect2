@@ -82,14 +82,14 @@ router.post('/draft/:surname', isLoggedIn, (req, res, next) => {
                 return User.findByIdAndUpdate(_id, {
                     $addToSet: { 'draftInfo.draft': driverId },
                     $inc: { 'draftInfo.totalPoints': newPoints }
-                }, { new: true })
+                }, { new: true });
             }
         })
         .then(() => res.redirect(`/user/profile/${_id}`))
         .catch(err => next(err))
 })
 
-router.post('/draft/delete/:driverId', isLoggedIn, ADMINorOwn, (req, res, next) => {
+router.post('/draft/delete/:driverId', isLoggedIn, (req, res, next) => {
 
     const { driverId } = req.params
     const { _id } = req.session.currentUser
