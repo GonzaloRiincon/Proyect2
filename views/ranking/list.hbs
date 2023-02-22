@@ -1,0 +1,36 @@
+<h1>Ranking List</h1>
+<div class="justify-content-center">
+
+    {{#each users}}
+    {{#if draftInfo.totalPoints}}
+    <div class="card my-4 " style=" width: 40rem;">
+        <div class="card-body rounded" style=" background-color:rgb(253, 253, 191); ">
+            <div><b>{{@index}}</b></div>
+            <div class="row justify-content-between my-3">
+                <div class="col-md-4">
+                    <h4 class="card-title text-center">{{username}}</h4>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="card-title text-center">{{draftInfo.totalPoints}}</h4>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                {{#each draftInfo.draft}}
+
+                <div class="col-md-3 card  mb-3 mx-3">
+                    <p class="text-center pt-3"><b>{{this.name}} {{this.surname}}</b></p>
+                    <p class="text-center ">{{this.points}} </p>
+                </div>
+
+
+                {{/each}}
+            </div>
+
+            <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a>
+        </div>
+    </div>
+    {{/if}}
+    {{/each}}
+
+</div>
