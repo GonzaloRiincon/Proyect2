@@ -25,6 +25,10 @@ const eventSchema = new Schema(
                 type: Schema.Types.ObjectId
             }]
         },
+        finished: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true

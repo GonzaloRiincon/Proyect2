@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-md-6">
+        <h1>Future Races</h1>
+    </div>
+    {{#if isAdmin}}
+    <div class="col-md-6 justify-content-end">
+        <div class="d-grid">
+            <a class="btn btn-dark text-center" href="/event/create"> Add new race</a>
+        </div>
+    </div>
+    {{/if}}
+    {{#if isEditor}}
+    <div class="col-md-6 justify-content-end">
+        <div class="d-grid">
+            <a class="btn btn-dark text-center" href="/event/create"> Add new race</a>
+        </div>
+    </div>
+    {{/if}}
+</div>
+
+
+
+
+<div class="row">
+    {{#each events}}
+    {{#unless finished}}
+    <div class="col-md-5 mx-3 my-3">
+        <div class="card my-5">
+            <div class="card-body">
+                <h5 class="card-title">{{circuit}} </h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{date}} </h6>
+                <p class="card-text">
+                <ul>
+                    {{#each drivers}}
+                    <li>
+                        <p>{{this.name}} {{this.surname}} </p>
+                    </li>
+                    {{/each}}
+                </ul>
+                </p>
+                {{#if ../isAdmin}}
+                <form class="d-grid" action="/event/finish/{{id}}" method="POST">
+                    <input type="submit" value="FINISH" class="btn btn-dark btn-sm border-dark mb-3">
+                </form>
+                <form class="d-grid" action="/event/delete/{{id}}" method="POST">
+                    <input type="submit" value="DELETE" class="btn btn-dark btn-sm border-dark mb-3">
+                </form>
+                {{/if }}
+                {{#if ../isEditor}}
+                <form class="d-grid" action="/event/finish/{{id}}" method="POST">
+                    <input type="submit" value="FINISH" class="btn btn-dark btn-sm border-dark mb-3">
+                </form>
+                <form class="d-grid" action="/event/delete/{{id}}" method="POST">
+                    <input type="submit" value="DELETE" class="btn btn-dark btn-sm border-dark mb-3">
+                </form>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+
+
+    {{/unless}}
+    {{/each}}
+</div>
