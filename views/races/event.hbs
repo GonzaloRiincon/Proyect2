@@ -1,0 +1,40 @@
+{{!-- !-- {{#if isAdmin}} -- --}}
+<form class="d-grid" action="/event/create" method="POST">
+    <h1 class="text-center">CREATE EVENT</h1>
+    <select class="form-select" aria-label="Default select example" name="circuit">
+        <option selected disabled>Select a Circuit... </option>
+        <option value="albert_park">Albert Park Grand Prix Circuit</option>
+        <option value="americas">Circuit of the Americas</option>
+        <option value="bahrain">Bahrain International Circuit</option>
+        <option value="baku">Baku City Circuit</option>
+        <option value="catalunya">Circuit de Barcelona-Catalunya</option>
+        <option value="hungaroring">Hungaroring</option>
+        <option value="imola">Autodromo Enzo e Dino Ferrari</option>
+        <option value="interlagos">Autódromo José Carlos Pace</option>
+        <option value="jeddah">Jeddah Corniche Circuit</option>
+        <option value="marina_bay">Marina Bay Street Circuit</option>
+        <option value="miami">Miami International Autodrome</option>
+        <option value="monaco">Circuit de Monaco</option>
+        <option value="monza">Autodromo Nazionale di Monza</option>
+        <option value="red_bull_ring">Red Bull Ring</option>
+        <option value="ricard">Circuit Paul Ricard</option>
+        <option value="rodriguez">Autódromo Hermanos Rodríguez</option>
+        <option value="silverstone">Silverstone Circuit</option>
+        <option value="spa">Circuit de Spa-Francorchamps</option>
+        <option value="suzuka">Suzuka Circuit</option>
+        <option value="villeneuve">Circuit Gilles Villeneuve</option>
+        <option value="yas_marina">Yas Marina Circuit</option>
+        <option value="zandvoort">Circuit Park Zandvoort</option>
+    </select>
+
+    <div class="mb-3">
+        <label for="date" class="form-label">Race Date</label>
+        <input type="date" class="form-control" id="date" name="date">
+    </div>
+
+
+    <input type="submit" value="Create Event" class="btn btn-dark btn-sm border-dark mb-3">
+</form>
+
+
+{{!-- !-- {{/if}} -- --}}

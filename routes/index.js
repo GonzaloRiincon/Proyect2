@@ -13,4 +13,6 @@ module.exports = (app) => {
     app.use("/draft", draftRoutes)
     const apiRoutes = require("./api.routes");
     app.use("/api", apiRoutes);
+    const eventRoutes = require("./event.routes")
+    app.use("/event", eventRoutes)
 }
