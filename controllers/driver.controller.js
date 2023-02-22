@@ -73,20 +73,18 @@ const getDriverDetails = (req, res, next) => {
                             .map(element => element.DriverStandings.map(elm => Number(elm.points)))
                             .flat(2).reduce((acc, curr) => acc + curr),
                     })
-                    .then(createdDriver => {
-                        const driver = Array.isArray(createdDriver) ? createdDriver[0] : createdDriver
-                        res.render('drivers/details', { driver })
-                    })
+                    .then()
                     .catch(err => next(err))
             }
         })
-        .catch(err => next(err))
-
-    Driver
-        .find({ driverId: driverId })
-        .then((driverData) => {
-            const driver = Array.isArray(driverData) ? driverData[0] : driverData
-            res.render('drivers/details', { driver })
+        .then(() => {
+            Driver
+                .find({ driverId: driverId })
+                .then((driverData) => {
+                    const driver = Array.isArray(driverData) ? driverData[0] : driverData
+                    res.render('drivers/details', { driver })
+                })
+                .catch(err => next(err))
         })
         .catch(err => next(err))
 }

@@ -82,7 +82,7 @@ router.post('/draft/:surname', isLoggedIn, (req, res, next) => {
                 return User.findByIdAndUpdate(_id, {
                     $addToSet: { 'draftInfo.draft': driverId },
                     $inc: { 'draftInfo.totalPoints': newPoints }
-                }, { new: true });
+                }, { new: true })
             }
         })
         .then(() => res.redirect(`/user/profile/${_id}`))
