@@ -7,25 +7,6 @@ const eventSchema = new Schema(
             required: true,
         },
 
-        place: {
-            country: {
-                type: String,
-                required: true,
-            },
-            locality: {
-                type: String,
-                required: true,
-            },
-            location: {
-                type: {
-                    type: String,
-                },
-                coords: {
-                    type: [Number]
-                }
-            },
-        },
-
         date: {
             type: Date,
             required: true,

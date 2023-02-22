@@ -9,4 +9,6 @@ module.exports = (app) => {
     app.use("/drivers", driversRoutes)
     const circuitRoutes = require("./circuit.routes")
     app.use("/circuit", circuitRoutes)
+    const apiRoutes = require("./api.routes");
+    app.use("/api", apiRoutes);
 }

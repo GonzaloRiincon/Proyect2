@@ -22,7 +22,7 @@ class ApiService {
     }
 
     getOneCircuit(id) {
-        return this.api.get(`/circuits/${{ id }}.json`)
+        return this.api.get(`/circuits/${id}.json`)
     }
 }
 
