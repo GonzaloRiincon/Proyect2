@@ -28,8 +28,8 @@ const checkRole = (...roles) => (req, res, next) => {
 }
 
 const ADMINorOwn = (req, res, next) => {
-    const { ID } = req.params
-    if (req.session.currentUser._id === ID) {
+    const { id } = req.params
+    if (req.session.currentUser._id === id) {
         next()
     }
     else if (req.session.currentUser.role === 'ADMIN') {
