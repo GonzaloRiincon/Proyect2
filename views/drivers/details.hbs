@@ -8,7 +8,7 @@
                 <p class="text-center">Nationality: <b>{{driver.nationality}}</b></p>
                 <p class="text-center">His current squad is <b>{{driver.constructors}}</b></p>
                 <h5 class="text-center">Current Points: <b>{{driver.points}}</b></h5>
-                <form class="d-grid mt-4 mb-3 " action="/user/draft/{{driver.surname}}" method="POST">
+                <form class="d-grid mt-4 mb-3 " action="/draft/add/{{driver.driverId}}" method="POST">
                     <input type="submit" value="Draft" class="btn btn-dark btn-sm">
                 </form>
             </div>
