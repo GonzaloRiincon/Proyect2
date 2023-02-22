@@ -9,21 +9,21 @@ const { checkIfAdmin } = require('../utils/checkIfAdmin');
 const { isLoggedIn, checkRole, ADMINorOwn } = require('../middlewares/route-guard');
 const { getAllCircuits, getOneCircuit } = require('../controllers/circuit.controller');
 
-router.get('/create', isLoggedIn, checkIfAdmin, (req, res, next) => {
+router.get('/create', isLoggedIn, (req, res, next) => {
     res.render('races/event')
 })
 
-router.post('/create', isLoggedIn, checkIfAdmin, (req, res, next) => {
+router.post('/create', isLoggedIn, (req, res, next) => {
     const { circuit, date } = req.body
     driverService
         .getAllDriversByYear(2022)
         .then(drivers => {
             const promises = drivers.map(driver => {
-                Driver.find({ driverId: driver.data.MRData.DriverTable.Drivers.driverId })
+                return Driver.find({ driverId: driver.data.MRData.DriverTable.Drivers.driverId })
             })
             Promise
                 .all(promises)
-                .then(drivers => { console.log(drivers) })
+                .then(drivers => { console.log('hello', drivers) })
         })
         .catch(err => next(err))
 
