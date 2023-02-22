@@ -1,5 +1,6 @@
 const bcrypt = require('bcryptjs')
 const User = require('../models/User.model')
+const capitalize = require('../utils/capitalize')
 const saltRounds = 10
 
 
@@ -11,11 +12,12 @@ const postSignUp = (req, res, next) => {
 
     let avatar = req.file?.path
     const { username, email, userPwd } = req.body
+    const capitalizedUsername = capitalize(username)
 
     bcrypt
         .genSalt(saltRounds)
         .then(salt => bcrypt.hash(userPwd, salt))
-        .then(hashedPassword => User.create({ username, email, userPwd, avatar, password: hashedPassword }))
+        .then(hashedPassword => User.create({ username: capitalizedUsername, email, userPwd, avatar, password: hashedPassword }))
         .then(() => res.redirect('/'))
         .catch(error => next(error))
 }
