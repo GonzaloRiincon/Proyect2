@@ -45,24 +45,25 @@ const getAllDriversByName = (req, res, next) => {
 
 const getDriverDetails = (req, res, next) => {
 
-    const { driverName } = req.params
+    const { driverId } = req.params
 
     const promises = [
-        driverService.getOneDriverData(driverName),
-        driverService.getOneDriverConstructor(driverName),
-        driverService.getOneDriverPoints(driverName),
-        Driver.find({ surname: capitalize(driverName) })
+        driverService.getOneDriverData(driverId),
+        driverService.getOneDriverConstructor(driverId),
+        driverService.getOneDriverPoints(driverId),
+        Driver.find({ driverId: driverId })
     ]
 
     Promise
         .all(promises)
         .then(([driverData, driverConstructor, driverPoints, existing]) => {
 
-            const { givenName, familyName, dateOfBirth, nationality, } = driverData.data.MRData.DriverTable.Drivers[0]
+            const { driverId, givenName, familyName, dateOfBirth, nationality, } = driverData.data.MRData.DriverTable.Drivers[0]
 
             if (existing.length === 0) {
                 return Driver
                     .create({
+                        driverId,
                         name: givenName,
                         surname: familyName,
                         birthday: dateOfBirth,
@@ -73,17 +74,16 @@ const getDriverDetails = (req, res, next) => {
                             .flat(2).reduce((acc, curr) => acc + curr),
                     })
                     .then(createdDriver => {
-
-                        return createdDriver
+                        const driver = Array.isArray(createdDriver) ? createdDriver[0] : createdDriver
+                        res.render('drivers/details', { driver })
                     })
                     .catch(err => next(err))
             }
-
         })
         .catch(err => next(err))
 
     Driver
-        .find({ surname: capitalize(driverName) })
+        .find({ driverId: driverId })
         .then((driverData) => {
             const driver = Array.isArray(driverData) ? driverData[0] : driverData
             res.render('drivers/details', { driver })

@@ -25,7 +25,7 @@ const userSchema = new Schema(
     draftInfo: {
       draft: [{
         ref: 'Driver',
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
       }],
       totalPoints: {
         type: Number,
@@ -36,13 +36,14 @@ const userSchema = new Schema(
       type: String,
       enum: ['USER', 'EDITOR', 'ADMIN'],
       default: 'USER',
-      required: true
     }
   },
   {
     timestamps: true
   }
 )
+
+
 
 const User = model("User", userSchema)
 

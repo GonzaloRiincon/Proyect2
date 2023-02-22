@@ -2,6 +2,9 @@ const { Schema, model } = require("mongoose")
 
 const driverSchema = new Schema(
     {
+        driverId: {
+            type: String
+        },
         name: {
             type: String,
             trim: true,

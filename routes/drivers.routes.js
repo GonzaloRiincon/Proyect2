@@ -14,6 +14,6 @@ router.get('/list/year', getAllDriversByYear)
 
 router.get('/list/name', getAllDriversByName)
 
-router.get('/:driverName', getDriverDetails)
+router.get('/:driverId', getDriverDetails)
 
 module.exports = router
