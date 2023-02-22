@@ -95,18 +95,20 @@ router.post('/draft/:surname', (req, res, next) => {
     Promise
         .all(promises)
         .then(([[driver], user]) => {
-            console.log(driver)
-            const driverId = driver._id.toString()
+            if (user.draftInfo.draft.length === 3) {
+                res.render(`user/profile`, user)
+            } else {
+                const driverId = driver._id.toString()
 
-            const newPoints = driver.points
-            return User.findByIdAndUpdate(_id, {
-                $addToSet: { 'draftInfo.draft': driverId },
-                $inc: { 'draftInfo.totalPoints': newPoints }
-            }, { new: true });
-        }
+                const newPoints = driver.points
+                return User.findByIdAndUpdate(_id, {
+                    $addToSet: { 'draftInfo.draft': driverId },
+                    $inc: { 'draftInfo.totalPoints': newPoints }
+                }, { new: true });
+            }
         })
-    .then(() => res.redirect(`/user/profile/${_id}`))
-    .catch(err => next(err))
+        .then(() => res.redirect(`/user/profile/${_id}`))
+        .catch(err => next(err))
 })
 
 router.post('/delete/:id', isLoggedIn, checkRole('ADMIN'), (req, res, next) => {
