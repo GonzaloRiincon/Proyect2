@@ -69,8 +69,12 @@ router.post('/draft/:surname', (req, res, next) => {
     Promise
         .all(promises)
         .then(([[driver], user]) => {
-            console.log(driver)
             const driverId = driver._id.toString()
+
+            console.log(user.draftInfo.draft.length)
+            if (user.draftInfo.draft.length > 2) {
+                return { erroMessage: 'No more drafts allowed' }
+            }
 
             const newPoints = driver.points
             return User.findByIdAndUpdate(_id, {
