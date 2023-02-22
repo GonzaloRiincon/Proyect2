@@ -11,6 +11,8 @@ module.exports = (app) => {
     app.use("/circuit", circuitRoutes)
     const draftRoutes = require("./draft.routes")
     app.use("/draft", draftRoutes)
+    const rankingRoutes = require("./ranking.routes")
+    app.use("/ranking", rankingRoutes)
     const apiRoutes = require("./api.routes");
     app.use("/api", apiRoutes);
     const eventRoutes = require("./event.routes")

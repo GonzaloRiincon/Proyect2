@@ -1,12 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {
-    getAllDrivers,
-    getAllDriversByYear,
-    getAllDriversByName,
-    getDriverDetails
-} = require('../controllers/driver.controller')
+const { getAllDrivers, getAllDriversByYear, getAllDriversByName, getDriverDetails } = require('../controllers/driver.controller')
 
 router.get('/list', getAllDrivers)
 

@@ -36,6 +36,9 @@ const userSchema = new Schema(
       type: String,
       enum: ['USER', 'EDITOR', 'ADMIN'],
       default: 'USER',
+    },
+    SerialNumber: {
+      type: Number
     }
   },
   {
