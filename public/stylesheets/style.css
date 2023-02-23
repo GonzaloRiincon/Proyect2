@@ -16,6 +16,12 @@ nav img {
     background-size: cover;
 }
 
+.bg-page-noOpacity {
+    background-image: url('./../images/bg3.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .fullscreen {
     height: 100vh;
 }
@@ -31,6 +37,10 @@ nav img {
 
 .bg-color {
     background-color: rgb(130, 171, 208);
+}
+
+.noOpacity {
+    opacity: 1;
 }
 
 #errorMessage {

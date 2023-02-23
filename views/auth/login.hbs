@@ -11,8 +11,8 @@
     <title>Log In</title>
 </head>
 
-<body class="bg-page fullscreen">
-    <div class="fullscreen row justify-content-center  align-items-center">
+<body class="bg-page-noOpacity fullscreen">
+    <div class="fullscreen row justify-content-center  align-items-center ">
 
         <div class=" col-md-5 align-items-center mb-5">
 
@@ -20,21 +20,23 @@
             <hr>
 
             <form action="/login" method="POST">
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email Address</label>
-                    <input type="email" class="form-control" id="email" name="email" value="{{email}}">
+                <div class="mb-3 noOpacity">
+                    <label for="email" class="form-label fs-5">Email Address</label>
+                    <input type="email" class="form-control" id="email" name="email" value="{{email}}"
+                        placeholder="Text your email here...">
                 </div>
 
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="userPwd">
+                <div class="mb-3 noOpacity">
+                    <label for="password" class="form-label fs-5">Password</label>
+                    <input type="password" class="form-control" id="password" name="userPwd"
+                        placeholder="Text your password here...">
                 </div>
 
-                <div class="d-grid gap-2 mb-4">
-                    <button type="submit" class="btn btn-dark block">Log in</button>
+                <div class="d-grid gap-2 mb-4 noOpacity">
+                    <button type="submit" class="btn btn-dark block noOpacity">Log in</button>
                 </div>
 
-                <a href="/signup"> Don't have an account already? Go to Sign Up</a>
+                <a class="fs-5" href="/signup"> Don't have an account already? Go to Sign Up</a>
 
                 {{#if errorMessage}}
                 <div id="errorMessage">
