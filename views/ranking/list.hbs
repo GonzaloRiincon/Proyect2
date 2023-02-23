@@ -1,9 +1,10 @@
 <h1>Ranking List</h1>
+<a href="#{{currentUser._id}}">Go to your position!</a>
 <div class="justify-content-center">
     <ol style="list-style-type: decimal;list-style-position: inside;">
         {{#each users}}
         {{#if draftInfo.totalPoints}}
-        <div class="card my-4" style=" width: 40rem;">
+        <div id="{{id}}" class="card my-4" style=" width: 40rem;">
             <div class="card-body bg-cards rounded" style=" background-color:rgba(255, 255, 255, 0.987); ">
                 <li>
                     <div class="row justify-content-between my-3">
