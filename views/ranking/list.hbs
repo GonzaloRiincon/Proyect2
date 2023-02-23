@@ -17,11 +17,14 @@
                     </div>
                     <div class="row justify-content-center">
                         {{#each draftInfo.draft}}
+                        <a href="/drivers/{{this.driverId}}" class=" col-md-3 card  mb-3 mx-3"
+                            style="text-decoration:none;  color: black;">
+                            <div class="">
+                                <p class="text-center pt-3"><b>{{this.name}} {{this.surname}}</b></p>
+                                <p class="text-center ">{{this.points}} </p>
+                            </div>
+                        </a>
 
-                        <div class="col-md-3 card  mb-3 mx-3">
-                            <p class="text-center pt-3"><b>{{this.name}} {{this.surname}}</b></p>
-                            <p class="text-center ">{{this.points}} </p>
-                        </div>
 
 
                         {{/each}}
