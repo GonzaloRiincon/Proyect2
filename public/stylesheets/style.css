@@ -14,12 +14,14 @@ nav img {
     opacity: 0.8;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .bg-page-noOpacity {
     background-image: url('./../images/bg3.jpeg');
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .fullscreen {
