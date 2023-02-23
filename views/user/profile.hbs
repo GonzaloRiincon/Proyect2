@@ -47,27 +47,28 @@
                 {{#if isAdmin}}
                 <div class="row justify-content-between mx-3 mb-4">
                     <div class="col-md-2 d-grid">
-                        <a class="btn btn-light border-dark" href="/user/profile/edit/{{user.id}}"
+                        <a class="btn btn-light btn-outline-warning border-dark" href="/user/profile/edit/{{user.id}}"
                             role="button">EDIT</a>
                     </div>
                     <div class="col-md-2 d-grid">
                         <form class="d-grid" action="/user/delete/{{user.id}}" method="POST">
-                            <input type="submit" value="DELETE" class="btn btn-light btn-sm border-dark">
+                            <input type="submit" value="DELETE"
+                                class="btn btn-light btn-sm btn-outline-danger border-dark">
                         </form>
                     </div>
                     <div class="col-md-2 d-grid">
                         <form class="d-grid" action="/user/EDITOR/{{user.id}}" method="POST">
-                            <input type="submit" value="EDITOR" class="btn btn-success btn-sm">
+                            <input type="submit" value="EDITOR" class="btn btn-outline-success btn-sm">
                         </form>
                     </div>
                     <div class="col-md-2 d-grid">
                         <form class="d-grid" action="/user/ADMIN/{{user.id}}" method="POST">
-                            <input type="submit" value="ADMIN" class="btn btn-success btn-sm">
+                            <input type="submit" value="ADMIN" class="btn btn-outline-success btn-sm">
                         </form>
                     </div>
                     <div class="col-md-2 d-grid">
                         <form class="d-grid" action="/user/USER/{{user.id}}" method="POST">
-                            <input type="submit" value="USER" class="btn btn-success btn-sm">
+                            <input type="submit" value="USER" class="btn btn-outline-success btn-sm">
                         </form>
                     </div>
                 </div>
