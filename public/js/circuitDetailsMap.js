@@ -16,8 +16,9 @@ function initMap() {
     myMap = new google.maps.Map(
         document.querySelector('#map'),
         {
-            zoom: 12,
+            zoom: 15,
             center: { lat: -34.9272, lng: 138.617 },
+            mapTypeId: 'satellite'
         }
     )
 }
