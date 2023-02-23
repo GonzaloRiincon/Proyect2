@@ -45,6 +45,12 @@ nav img {
     opacity: 1;
 }
 
+#map {
+    height: 500px;
+    width: 100%;
+    background-color: red;
+}
+
 #errorMessage {
     background-color: rgb(255, 202, 202);
     width: 400px;

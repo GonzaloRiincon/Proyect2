@@ -7,7 +7,6 @@ const getOneCircuitApi = (req, res, next) => {
     circuitService
         .getOneCircuit(circuitID)
         .then(circuit => {
-            console.log(circuit.data.MRData.CircuitTable.Circuits)
             res.send(circuit.data.MRData.CircuitTable.Circuits)
         })
         .catch(err => next(err))
