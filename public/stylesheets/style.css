@@ -10,7 +10,8 @@ nav img {
 }
 
 .bg-page {
-    background-image: url('./../images/bg-page.jpg');
+    background-image: url('./../images/bg3.jpeg');
+    opacity: 0.8;
     background-repeat: no-repeat;
     background-size: cover;
 }
