@@ -1,8 +1,10 @@
 const express = require('express');
-const { createRankingByPoints } = require('../controllers/ranking.controller');
+const { rankingList } = require('../controllers/ranking.controller');
+const { isLoggedIn } = require('../middlewares/route-guard');
+
 const router = express.Router();
 
 
-router.get('/', createRankingByPoints)
+router.get('/', isLoggedIn, rankingList)
 
 module.exports = router
