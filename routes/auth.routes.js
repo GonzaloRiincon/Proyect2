@@ -1,8 +1,5 @@
 const express = require('express')
 const router = express.Router()
-const bcrypt = require('bcryptjs')
-const User = require('../models/User.model')
-const saltRounds = 10
 const fileUploader = require('../middlewares/cloudinary.middleware')
 const { checkFields } = require('../middlewares/auth-guard')
 const { getSignUp, postSignUp, getLogin, postLogin, logout } = require('../controllers/auth.controller')

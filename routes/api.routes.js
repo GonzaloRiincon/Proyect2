@@ -1,19 +1,7 @@
 const express = require('express');
+const { getOneCircuitApi } = require('../controllers/api.circuit.controller');
 const router = express.Router();
-const ApiService = require("../services/circuits.service")
-const circuitService = new ApiService()
 
-router.get("/circuit/:circuitID", (req, res, next) => {
-
-    const { circuitID } = req.params
-    circuitService
-        .getOneCircuit(circuitID)
-        .then(circuit => {
-            console.log(circuit.data.MRData.CircuitTable.Circuits)
-            res.send(circuit.data.MRData.CircuitTable.Circuits)
-        })
-        .catch(err => next(err))
-})
-
+router.get("/circuit/:circuitID", getOneCircuitApi)
 
 module.exports = router

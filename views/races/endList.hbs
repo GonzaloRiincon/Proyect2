@@ -8,21 +8,40 @@
             <div class="card-body">
                 <h5 class="card-title">{{circuit}} </h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{date}} </h6>
-                <p class="card-text">
-                <ul>
-                    {{#each finalClasification}}
-                    <li>
-                        <p>{{this.name}} {{this.surname}} </p>
-                    </li>
-                    {{/each}}
-                </ul>
-                </p>
-                <form class="d-grid" action="/event/finish/{{id}}" method="POST">
-                    <input type="submit" value="FINISH" class="btn btn-dark btn-sm border-dark mb-3">
-                </form>
+                <div class="accordion mb-3" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#{{id}}" aria-expanded="false" aria-controls="collapseOne">
+                                Clasification
+                            </button>
+                        </h2>
+                        <div id="{{id}}" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <p class="card-text">
+                                <ul>
+                                    {{#each finalClasification}}
+                                    <li>
+                                        <p>{{this.name}} {{this.surname}} </p>
+                                    </li>
+                                    {{/each}}
+                                </ul>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{#if ../isAdmin}}
                 <form class="d-grid" action="/event/delete/{{id}}" method="POST">
                     <input type="submit" value="DELETE" class="btn btn-dark btn-sm border-dark mb-3">
                 </form>
+                {{/if }}
+                {{#if ../isEditor}}
+                <form class="d-grid" action="/event/delete/{{id}}" method="POST">
+                    <input type="submit" value="DELETE" class="btn btn-dark btn-sm border-dark mb-3">
+                </form>
+                {{/if}}
             </div>
         </div>
     </div>
