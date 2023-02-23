@@ -19,6 +19,7 @@ nav img {
 
 .bg-page-noOpacity {
     background-image: url('./../images/bg3.jpeg');
+
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

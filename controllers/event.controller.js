@@ -11,6 +11,9 @@ const getFutureRaces = (req, res, next) => {
         .find({ finished: false })
         .populate('drivers')
         .then(events => {
+
+
+
             const isAdmin = checkIfAdmin(req.session.currentUser.role);
             const isEditor = checkIfEditor(req.session.currentUser.role)
             res.render('races/list', { events, isAdmin, isEditor })
@@ -23,6 +26,10 @@ const getFinishedRaces = (req, res, next) => {
         .find({ finished: true })
         .populate('finalClasification')
         .then(events => {
+
+
+
+
             const isAdmin = checkIfAdmin(req.session.currentUser.role);
             const isEditor = checkIfEditor(req.session.currentUser.role)
             res.render('races/endList', { events, isAdmin, isEditor })
