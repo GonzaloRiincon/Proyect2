@@ -1,6 +1,6 @@
 const User = require('../models/User.model')
 
-const createRankingByPoints = (req, res, next) => {
+const rankingList = (req, res, next) => {
     User
         .find()
         .populate('draftInfo.draft')
@@ -23,4 +23,4 @@ const createRankingByPoints = (req, res, next) => {
 }
 
 
-module.exports = { createRankingByPoints }
+module.exports = { rankingList }
