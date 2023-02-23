@@ -10,7 +10,7 @@ nav img {
 }
 
 .bg-page {
-    background-image: url('./../images/bg3.jpeg');
+    background-image: url('./../images/bg3.png');
     /* opacity: 0.8; */
     background-repeat: no-repeat;
     background-size: cover;
@@ -18,7 +18,7 @@ nav img {
 }
 
 .bg-page-noOpacity {
-    background-image: url('./../images/bg3.jpeg');
+    background-image: url('./../images/bg3.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

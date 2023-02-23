@@ -13,12 +13,24 @@
 
 <body class="bg">
     <div class="index">
-        <button type="button" class="btn btn-outline-light border-dark mx-4">
-            <a class="btn btn-outline-light px-4" href="/signup">SIGN UP FOR FREE</a>
-        </button>
-        <button type="button" class="btn btn-outline-light border-dark">
-            <a class="btn btn-outline-light" href="/login">LOG IN</a>
-        </button>
+        <div class="row">
+            <div class="col-md-2">
+                <form action="/signup">
+                    <div class="d-grid">
+                        <input class="btn btn-outline-light border-light" value="SIGN UP FOR FREE" type="submit">
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-1">
+                <form action="/login">
+                    <div class="d-grid">
+                        <input class="btn btn-outline-light border-light mx-2" value="LOG IN" type="submit">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
     </div>
 
 
