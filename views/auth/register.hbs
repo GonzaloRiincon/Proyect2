@@ -22,33 +22,35 @@
             <form action="/signup" method="POST" enctype="multipart/form-data">
 
                 <div class="mb-3">
-                    <label for="email" class="form-label fs-5">Email</label>
+                    <label for="email" class="form-label fs-5"><b>Email</b></label>
                     <input type="email" class="form-control" id="email" name="email" value="{{email}}"
                         placeholder="Text your email here...">
                 </div>
 
                 <div class="mb-3 row">
                     <div class="col">
-                        <label for="username" class="form-label fs-5">Username</label>
+                        <label for="username" class="form-label fs-5"><b>Username</b></label>
                         <input type="text" class="form-control" id="username" name="username" value="{{username}}"
                             placeholder="Text your username here...">
                     </div>
 
                     <div class="col">
-                        <label for="password" class="form-label fs-5">Password</label>
+                        <label for="password" class="form-label fs-5"><b>Password</b></label>
                         <input type="password" class="form-control" id="password" name="userPwd"
                             placeholder="Text your password here...">
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="avatar" class="form-label fs-5">Avatar</label>
+                    <label for="avatar" class="form-label fs-5"><b>Avatar</b></label>
                     <input type="file" class="form-control" id="avatar" name="avatar">
                 </div>
                 <div class="d-grid gap-2 mb-4">
                     <button type="submit" class="btn btn-dark block">Sign Up</button>
                 </div>
 
-                <a class="fs-5" href="/login"> Are you already signed up? Go to Log In</a>
+                <button type="button" class="btn btn-outline-light border-dark mx-4">
+                    <a class="btn-light" href="/login">Are you already signed up? Go to Log In</a>
+                </button>
 
                 {{#if errorMessage}}
                 <div id="errorMessage">

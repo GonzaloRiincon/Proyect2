@@ -21,13 +21,13 @@
 
             <form action="/login" method="POST">
                 <div class="mb-3 noOpacity">
-                    <label for="email" class="form-label fs-5">Email Address</label>
+                    <label for="email" class="form-label fs-5"><b>Email Address</b></label>
                     <input type="email" class="form-control" id="email" name="email" value="{{email}}"
                         placeholder="Text your email here...">
                 </div>
 
                 <div class="mb-3 noOpacity">
-                    <label for="password" class="form-label fs-5">Password</label>
+                    <label for="password" class="form-label fs-5"><b>Password</b></label>
                     <input type="password" class="form-control" id="password" name="userPwd"
                         placeholder="Text your password here...">
                 </div>
@@ -36,7 +36,10 @@
                     <button type="submit" class="btn btn-dark block noOpacity">Log in</button>
                 </div>
 
-                <a class="fs-5" href="/signup"> Don't have an account already? Go to Sign Up</a>
+                <button type="button" class="btn btn-outline-light border-dark mx-4">
+                    <a class="btn-light" href="/signup">Don't have an account already? Go to Sign Up</a>
+                </button>
+
 
                 {{#if errorMessage}}
                 <div id="errorMessage">
