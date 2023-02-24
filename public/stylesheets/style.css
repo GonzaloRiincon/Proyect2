@@ -6,7 +6,7 @@ nav img {
     background-image: url('./../images/bg2.jpg');
     background-repeat: no-repeat;
     background-size: cover;
-
+    background-attachment: fixed;
 }
 
 .bg-page {
