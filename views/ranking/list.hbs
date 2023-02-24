@@ -2,48 +2,49 @@
 <a href="#{{currentUser._id}}">Go to your position!</a>
 <div class="justify-content-center">
     <ol style="list-style-type: decimal;list-style-position: inside;">
-        {{#each users}}
-        {{#if draftInfo.totalPoints}}
-        <div class="row">
-            <div class="col-md-10 col-sm-12">
+        <div class="container">
+            <div class="row">
+                {{#each users}}
+                {{#if draftInfo.totalPoints}}
+                <div class="col-md-12 col-sm-8">
 
-                <div id="{{id}}" class="card my-4" style=" width: 40rem;">
-                    <div class="card-body bg-cards rounded" style=" background-color:rgba(255, 255, 255, 0.987); ">
-                        <li>
-                            <div class="row justify-content-between my-3">
-                                <div class="col-md-4">
-                                    <h4 class="card-title text-center">{{username}}</h4>
-                                </div>
-                                <div class="col-md-4">
-                                    <h4 class="card-title text-center">{{draftInfo.totalPoints}}</h4>
-                                </div>
-                            </div>
-                            <div class="row justify-content-center">
-                                {{#each draftInfo.draft}}
-                                <a href="/drivers/{{this.driverId}}" class=" col-md-3 card  mb-3 mx-3"
-                                    style="text-decoration:none;  color: black;">
-                                    <div class="">
-                                        <p class="text-center pt-3"><b>{{this.name}} {{this.surname}}</b></p>
-                                        <p class="text-center ">{{this.points}} </p>
+                    <div id="{{id}}" class="card mr-4 my-4">
+                        <div class="card-body bg-cards rounded" style=" background-color:rgba(255, 255, 255, 0.987); ">
+                            <li>
+                                <div class="row justify-content-between my-3">
+                                    <div class="col-md-4">
+                                        <h4 class="card-title text-center">{{username}}</h4>
                                     </div>
-                                </a>
+                                    <div class="col-md-4">
+                                        <h4 class="card-title text-center">{{draftInfo.totalPoints}}</h4>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    {{#each draftInfo.draft}}
+                                    <a href="/drivers/{{this.driverId}}" class=" col-md-3 card  mb-3 mx-3"
+                                        style="text-decoration:none;  color: black;">
+                                        <div class="">
+                                            <p class="text-center pt-3"><b>{{this.name}} {{this.surname}}</b></p>
+                                            <p class="text-center ">{{this.points}} </p>
+                                        </div>
+                                    </a>
 
 
 
-                                {{/each}}
-                            </div>
-                            <div class="d-grid my-4">
-                                <a href="/user/profile/{{id}}" class="btn btn-dark">Profile</a>
-                            </div>
-                        </li>
+                                    {{/each}}
+                                </div>
+                                <div class="d-grid my-4">
+                                    <a href="/user/profile/{{id}}" class="btn btn-dark">Profile</a>
+                                </div>
+                            </li>
+                        </div>
                     </div>
-                </div>
 
+                </div>
+                {{/if}}
+                {{/each}}
             </div>
         </div>
-
-        {{/if}}
-        {{/each}}
 
     </ol>
 
