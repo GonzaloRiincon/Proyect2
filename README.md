@@ -5,9 +5,9 @@
 | GET        | `/login`                    | Details of a driver              |      |   
 | POST       | `/login`                    | List of users registered         |      |   
 | GET        | `/logout`                   | Personal profile                 |      |   
-| GET        | `/drivers/list`                  | List of all drivers              |      |  
+| GET        | `/drivers/list`             | List of all drivers              |      |  
 | GET        | `/drivers/name`             | List of all drivers              |      |   
-| GET        | `/drivers/year`            | List of all drivers of a year    |      |   
+| GET        | `/drivers/year`             | List of all drivers of a year    |      |   
 | GET        | `/drivers/:id`              | Details of a driver              |      |   
 | GET        | `/user/list`                | List of users registered         |      |   
 | GET        | `/user/profile/:id`         | Personal profile                 |      |   
